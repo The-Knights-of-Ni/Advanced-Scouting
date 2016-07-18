@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- <link type="text/css" rel="stylesheet" href="stylsheet.css"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+</head>
+<script src="Chart.js"></script>
+<script>
+	var myChart = new Chart({...
+	})
+</script>
+
+<body>
+	<nav class="w3-sidenav w3-dark-grey w3-card-2" style="display:none">
+		<a href="javascript:void(0)" onclick="w3_close()" class="w3-closenav w3-large">Close &times;</a>
+		<a href="#" class="tablink" onclick="openPage(event, 'Team-View');">Team View</a>
+		<a href="#" class="tablink" onclick="openPage(event, 'FIRST-Ranking')">FIRST Ranking</a>
+		<a href="#" class="tablink" onclick="openPage(event, 'Pick-List');">Pick List</a>
+		<a href="#" class="tablink" onclick="openPage(event, 'Prediction')">Prediction</a>
+		<a href="#" class="tablink" onclick="openPage(event, 'My-Team')">My Team</a>
+		<a href="#" class="tablink" onclick="openPage(event, 'Overall')">Overall</a>
+		<a href="#" class="tablink" onclick="openPage(event, 'Input')">Input</a>
+	</nav>
+	<div class="w3-overlay" onclick="w3_close()" style="cursor:pointer"></div>
+	<div id="main">
+		<div id="Team-View" class="Page" onload="openPage(event, 'Team-View');">
+			<!-- Quick Reference Bar Card -->
+			<div class="w3-row">
+				<div class="w3-container-2 w3-dark-grey w3-center w3-large w3-rest">
+					<h1><span class="w3-opennav w3-xxlarge w3-left w3-padding-ver-16" onclick="w3_open()"> &#9776;</span>##### Team Name Offense Defense Compat</h1>
+				</div>
+			</div>
+			<!-- Package so we get a clean look -->
+			<div class="w3-third">
+				<!-- Capablilty Radar Card -->
+				<div class="w3-card-2 w3-center">
+					<div>
+						<canvas id="TeamRadar" width="400%" height="340%"></canvas>
+					</div>
+					<script>
+						var ctx = document.getElementById("TeamRadar");
+						var myChart = new Chart(ctx, {
+							type: 'polarArea',
+							data: {
+								datasets: [{
+									data: [35, 0, 15, 15, 10],
+									backgroundColor: [
+										"#FF6384",
+										"#4BC0C0",
+										"#FFCE56",
+										"#E7E9ED",
+										"#36A2EB"
+									],
+									label: 'Team-#####' // for legend
+								}],
+								labels: [
+									"High Goal",
+									"Low Goal",
+									"Defenses",
+									"Challenge",
+									"Auto"
+								]
+							},
+							options: {
+								maintainAspectRatio: true,
+								responsive: false,
+								showScale: false,
+								legend: false
+							}
+						});
+					</script>
+				</div>
+				<!-- Picture Card -->
+				<div class="w3-card-2 w3-display-container w3-center">
+					<img src="RES-Q_Field_2015-R1.png" class="w3-hover-opacity" alt="#####" style="width: 100%">
+				</div>
+			</div>
+			<!-- Round Breakdown Card -->
+			<div class="w3-card-2 w3-center w3-twothird">
+				<div class="w3-card-2 w3-third w3-light-blue">
+					<h1> Match #</h1>
+				</div>
+				<div class="w3-card-2 w3-twothird w3-light-green">
+					<h1> Score, Predicted, Winner, Carried?</h1>
+				</div>
+				<div class="w3-card-2 w3-third">
+					<div>
+						<canvas id="breakdown" width="400%" height="400%"></canvas>
+					</div>
+					<script>
+						var ctx = document.getElementById("breakdown");
+						var myChart = new Chart(ctx, {
+							type: 'bar',
+							data: {
+								datasets: [{
+									data: [60, 2, 25, 25, 15, 25, 26], //Actual Point values
+									backgroundColor: "rgba(255,99,132,0.2)",
+									borderColor: "rgba(255,99,132,1)",
+									borderWidth: 1,
+									hoverBackgroundColor: "rgba(255,99,132,0.4)",
+									hoverBorderColor: "rgba(255,99,132,1)",
+									label: 'Red' // for legend
+								}, {
+									data: [50, 4, 20, 25, 10, 0, 16],
+									backgroundColor: "rgba(132,99,255,0.2)",
+									borderColor: "rgba(132,99,255,1)",
+									borderWidth: 1,
+									hoverBackgroundColor: "rgba(132,99,255,0.4)",
+									hoverBorderColor: "rgba(132,99,255,1)",
+									label: 'Blue' // for legend
+								}],
+								labels: [
+									"High Goal",
+									"Low Goal",
+									"Defenses",
+									"Breach",
+									"Challenge",
+									"Capture",
+									"Auto"
+								]
+							},
+							options: {
+								maintainAspectRatio: true,
+								responsive: true,
+								showScale: false,
+								display: false,
+								legend: false
+							}
+						});
+					</script>
+				</div>
+				<div class="w3-card-2 w3-third">
+					<!-- Part 1 Quick Summary -->
+					<div>
+						<canvas id="Part1" width="400%" height="400%"></canvas>
+					</div>
+					<script>
+						var ctx = document.getElementById("Part1");
+						var myChart = new Chart(ctx, {
+							type: 'polarArea',
+							data: {
+								datasets: [{
+									data: [35, 0, 15, 15, 10],
+									backgroundColor: [
+										"#FF6384",
+										"#4BC0C0",
+										"#FFCE56",
+										"#E7E9ED",
+										"#36A2EB"
+									],
+									label: 'Team-#####' // for legend
+								}],
+								labels: [
+									"High Goal",
+									"Low Goal",
+									"Defenses",
+									"Challenge",
+									"Auto"
+								]
+							},
+							options: {
+								maintainAspectRatio: true,
+								showScale: false,
+								legend: false
+							}
+						});
+					</script>
+				</div>
+				<div class="w3-card-2 w3-third">
+					<!-- Part 2 Quick Summary -->
+					<div>
+						<canvas id="Part2" width="400%" height="400%"></canvas>
+					</div>
+					<script>
+						var ctx = document.getElementById("Part2");
+						var myChart = new Chart(ctx, {
+							type: 'polarArea',
+							data: {
+								datasets: [{
+									data: [35, 0, 15, 15, 10],
+									backgroundColor: [
+										"#FF6384",
+										"#4BC0C0",
+										"#FFCE56",
+										"#E7E9ED",
+										"#36A2EB"
+									],
+									label: 'Team-#####' // for legend
+								}],
+								labels: [
+									"High Goal",
+									"Low Goal",
+									"Defenses",
+									"Challenge",
+									"Auto"
+								]
+							},
+							options: {
+								maintainAspectRatio: true,
+								showScale: false,
+								legend: false
+							}
+						});
+					</script>
+				</div>
+				<div class="w3-card-2 w3-third">
+					<!-- Opp 1 Quick Summary -->
+					<div>
+						<canvas id="Opp1" width="400%" height="400%"></canvas>
+					</div>
+					<script>
+						var ctx = document.getElementById("Opp1");
+						var myChart = new Chart(ctx, {
+							type: 'polarArea',
+							data: {
+								datasets: [{
+									data: [35, 0, 15, 15, 10],
+									backgroundColor: [
+										"#FF6384",
+										"#4BC0C0",
+										"#FFCE56",
+										"#E7E9ED",
+										"#36A2EB"
+									],
+									label: 'Team-#####' // for legend
+								}],
+								labels: [
+									"High Goal",
+									"Low Goal",
+									"Defenses",
+									"Challenge",
+									"Auto"
+								]
+							},
+							options: {
+								maintainAspectRatio: true,
+								showScale: false,
+								legend: false
+							}
+						});
+					</script>
+				</div>
+				<div class="w3-card-2 w3-third">
+					<!-- Opp 2 Quick Summary -->
+					<div>
+						<canvas id="Opp2" width="400%" height="400%"></canvas>
+					</div>
+					<script>
+						var ctx = document.getElementById("Opp2");
+						var myChart = new Chart(ctx, {
+							type: 'polarArea',
+							data: {
+								datasets: [{
+									data: [35, 0, 15, 15, 10],
+									backgroundColor: [
+										"#FF6384",
+										"#4BC0C0",
+										"#FFCE56",
+										"#E7E9ED",
+										"#36A2EB"
+									],
+									label: 'Team-#####' // for legend
+								}],
+								labels: [
+									"High Goal",
+									"Low Goal",
+									"Defenses",
+									"Challenge",
+									"Auto"
+								]
+							},
+							options: {
+								maintainAspectRatio: true,
+								showScale: false,
+								legend: false
+							}
+						});
+					</script>
+				</div>
+				<div class="w3-card-2 w3-third">
+					<!-- Opp 3 Quick Summary -->
+					<div>
+						<canvas id="Opp3" width="400%" height="400%"></canvas>
+					</div>
+					<script>
+						var ctx = document.getElementById("Opp3");
+						var myChart = new Chart(ctx, {
+							type: 'polarArea',
+							data: {
+								datasets: [{
+									data: [35, 0, 15, 15, 10],
+									backgroundColor: [
+										"#FF6384",
+										"#4BC0C0",
+										"#FFCE56",
+										"#E7E9ED",
+										"#36A2EB"
+									],
+									label: 'Team-#####' // for legend
+								}],
+								labels: [
+									"High Goal",
+									"Low Goal",
+									"Defenses",
+									"Challenge",
+									"Auto"
+								]
+							},
+							options: {
+								maintainAspectRatio: true,
+								showScale: false,
+								legend: false
+							}
+						});
+					</script>
+				</div>
+			</div>
+
+		</div>
+
+		<div id="Pick-List" class="Page">
+			<!-- Quick Reference Bar Card -->
+			<div class="w3-row">
+				<div class="w3-container-2 w3-dark-grey w3-center w3-large w3-rest">
+					<h1><span class="w3-opennav w3-xxlarge w3-left w3-padding-ver-16" onclick="w3_open()"> &#9776;</span>Pick List</h1>
+				</div>
+			</div>
+		</div>
+
+		<div id="FIRST-Ranking" class="Page">
+			<!-- Quick Reference Bar Card -->
+			<div class="w3-row">
+				<div class="w3-container-2 w3-dark-grey w3-center w3-large w3-rest">
+					<h1><span class="w3-opennav w3-xxlarge w3-left w3-padding-ver-16" onclick="w3_open()"> &#9776;</span>FIRST Ranking</h1>
+				</div>
+			</div>
+		</div>
+		<div id="Prediction" class="Page">
+			<!-- Quick Reference Bar Card -->
+			<div class="w3-row">
+				<div class="w3-container-2 w3-dark-grey w3-center w3-large w3-rest">
+					<h1><span class="w3-opennav w3-xxlarge w3-left w3-padding-ver-16" onclick="w3_open()"> &#9776;</span>Prediction</h1>
+				</div>
+			</div>
+		</div>
+		<div id="My-Team" class="Page">
+			<!-- Quick Reference Bar Card -->
+			<div class="w3-row">
+				<div class="w3-container-2 w3-dark-grey w3-center w3-large w3-rest">
+					<h1><span class="w3-opennav w3-xxlarge w3-left w3-padding-ver-16" onclick="w3_open()"> &#9776;</span>My Team (#####)</h1>
+				</div>
+			</div>
+		</div>
+		<div id="Overall" class="Page">
+			<!-- Quick Reference Bar Card -->
+			<div class="w3-row">
+				<div class="w3-container-2 w3-dark-grey w3-center w3-large w3-rest">
+					<h1><span class="w3-opennav w3-xxlarge w3-left w3-padding-ver-16" onclick="w3_open()"> &#9776;</span>Overall</h1>
+				</div>
+			</div>
+		</div>
+		<div id="Input" class="Page">
+			<!-- Quick Reference Bar Card -->
+			<div class="w3-row">
+				<div class="w3-container-2 w3-dark-grey w3-center w3-large w3-rest">
+					<h1><span class="w3-opennav w3-xxlarge w3-left w3-padding-ver-16" onclick="w3_open()"> &#9776;</span>Input</h1>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script>
+		function w3_open() {
+			document.getElementById("main").style.marginLeft = "10%";
+			document.getElementsByClassName("w3-sidenav")[0].style.width = "10%";
+			document.getElementsByClassName("w3-sidenav")[0].style.display = "block";
+			var opennavs, i;
+			opennavs = document.getElementsByClassName("w3-opennav");
+			for (i = 0; i < opennavs.length; i++)
+				opennavs[i].style.display = 'none';
+		}
+
+		function w3_close() {
+			document.getElementById("main").style.marginLeft = "0%";
+			document.getElementsByClassName("w3-sidenav")[0].style.display = "none";
+			var opennavs, i;
+			opennavs = document.getElementsByClassName("w3-opennav");
+			for (i = 0; i < opennavs.length; i++)
+				opennavs[i].style.display = 'inline-block';
+		}
+		Chart.defaults.global.responsive = true;
+		Chart.defaults.global.legend = false;
+
+		function openPage(evt, pageName) {
+			var i, x, tablinks;
+			x = document.getElementsByClassName("Page");
+			for (i = 0; i < x.length; i++) {
+				x[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablink");
+			for (i = 0; i < x.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" w3-white", "");
+			}
+			document.getElementById(pageName).style.display = "block";
+			evt.currentTarget.className += " w3-white";
+		}
+	</script>
+
+</body>
+
+</html>
